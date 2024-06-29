@@ -1,0 +1,168 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --item-size: 100px;
+    --xo-size: calc(var(--item-size) * .9);
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.item.x,
+.item.o {
+    cursor: not-allowed;
+}
+
+.item {
+    cursor: pointer;
+    width: var(--item-size);
+    height: var(--item-size);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.item:nth-child(1),
+.item:nth-child(2),
+.item:nth-child(3) {
+    border-top: none;
+}
+
+.item:nth-child(7),
+.item:nth-child(8),
+.item:nth-child(9) {
+    border-bottom: none;
+}
+
+.item:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.item:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.item.x::after,
+.item.x::before,
+.item.o::after,
+.item.o::before {
+    background-color: black;
+}
+
+.container.x .item:not(.x):not(.o):hover::after,
+.container.x .item:not(.x):not(.o):hover::before,
+.container.o .item:not(.x):not(.o):hover::after,
+.container.o .item:not(.x):not(.o):hover::before {
+    background-color: rgb(195, 195, 195);
+}
+
+.item.x::after,
+.item.x::before,
+.container.x .item:not(.x):not(.o):hover::before,
+.container.x .item:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--xo-size) * .10);
+    height: var(--xo-size);
+}
+
+.item.x::after,
+.container.x .item:not(.x):not(.o):hover::after {
+    transform: rotate(45deg);
+}
+
+.item.x::before,
+.container.x .item:not(.x):not(.o):hover::before {
+    transform: rotate(-45deg);
+}
+
+.item.o::after,
+.item.o::before,
+.container.o .item:not(.x):not(.o):hover::after,
+.container.o .item:not(.x):not(.o):hover::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.item.o::before,
+.container.o .item:not(.x):not(.o):hover::before {
+    width: var(--xo-size);
+    height: var(--xo-size);
+}
+
+.item.o::after,
+.container.o .item:not(.x):not(.o):hover::after {
+    width: calc(var(--xo-size) * .8);
+    height: calc(var(--xo-size) * .8);
+    background-color: white;
+}
+
+.results {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5em;
+    flex-direction: column;
+}
+
+.results button {
+    font-size: 2rem;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: all 0.2s ease-in;
+}
+
+.results button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.results.show {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
